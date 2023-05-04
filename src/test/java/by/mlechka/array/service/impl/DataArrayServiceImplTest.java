@@ -1,6 +1,6 @@
 package by.mlechka.array.service.impl;
 
-import by.mlechka.array.exception.ArrayCutomException;
+import by.mlechka.array.exception.ArrayCustomException;
 import by.mlechka.array.model.DataArray;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -94,7 +94,7 @@ class DataArrayServiceImplTest {
     }
 
         @Test
-        public void testCreateArrayFromFile() throws ArrayCutomException, FileNotFoundException {
+        public void testCreateArrayFromFile() throws ArrayCustomException, FileNotFoundException {
             DataArrayServiceImpl service = new DataArrayServiceImpl();
             DataArray array = service.createArrayFromFile("src/main/resources/data.txt");
             Assertions.assertArrayEquals(new int[]{1, 2, 3, 4, 5}, array.getNumbers());
@@ -103,7 +103,7 @@ class DataArrayServiceImplTest {
         @Test
         public void testCreateArrayFromFileWithInvalidData() throws FileNotFoundException {
             DataArrayServiceImpl service = new DataArrayServiceImpl();
-            Assertions.assertThrows(ArrayCutomException.class, () -> service.createArrayFromFile("src/main/resources/invalid_data.txt"));
+            Assertions.assertThrows(ArrayCustomException.class, () -> service.createArrayFromFile("src/main/resources/invalid_data.txt"));
         }
 
     @Test

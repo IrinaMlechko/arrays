@@ -1,6 +1,6 @@
 package by.mlechka.array.validator;
 
-import by.mlechka.array.exception.ArrayCutomException;
+import by.mlechka.array.exception.ArrayCustomException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -8,20 +8,20 @@ import java.io.FileNotFoundException;
 
 public class FileValidatorTest {
     @Test
-    public void testValidateFile() throws ArrayCutomException, FileNotFoundException {
+    public void testValidateFile() throws ArrayCustomException, FileNotFoundException {
         FileValidator.validateFile("src/test/java/resources/test1.txt");
     }
 
     @Test
     public void testValidateFileWithInvalidCharacter() throws FileNotFoundException {
-        Assertions.assertThrows(ArrayCutomException.class, () -> {
+        Assertions.assertThrows(ArrayCustomException.class, () -> {
             FileValidator.validateFile("src/test/java/resources/test2.txt");
         });
     }
 
     @Test
     public void testValidateEmptyFile() throws FileNotFoundException {
-        Assertions.assertThrows(ArrayCutomException.class, () -> {
+        Assertions.assertThrows(ArrayCustomException.class, () -> {
             FileValidator.validateFile("src/test/java/resources/test3.txt");
         });
     }

@@ -1,6 +1,6 @@
 package by.mlechka.array.service;
 
-import by.mlechka.array.exception.ArrayCutomException;
+import by.mlechka.array.exception.ArrayCustomException;
 import by.mlechka.array.model.DataArray;
 
 import java.io.FileNotFoundException;
@@ -87,9 +87,9 @@ public interface DataArrayService {
 
     void insertionSort(DataArray dataArray);
 
-    DataArray createArrayFromFile(String fileName) throws ArrayCutomException, FileNotFoundException;
+    DataArray createArrayFromFile(String fileName) throws ArrayCustomException, FileNotFoundException;
 
-    int[] readNumbersFromFile(String fileName) throws FileNotFoundException, ArrayCutomException;
+    int[] readNumbersFromFile(String fileName) throws ArrayCustomException, FileNotFoundException;
 
     /**
      * Finds the minimum value in the given array using streams.
@@ -144,7 +144,7 @@ public interface DataArrayService {
 
     void sortArrayStreams(DataArray dataArray);
 
-    DataArray createArrayFromFileStreams(String fileName) throws ArrayCutomException, FileNotFoundException;
+    DataArray createArrayFromFileStreams(String fileName) throws ArrayCustomException, FileNotFoundException;
 
-    String readLineFromFileStreams(String fileName) throws FileNotFoundException;
+    String readLineFromFileStreams(String fileName) throws FileNotFoundException, ArrayCustomException;
 }

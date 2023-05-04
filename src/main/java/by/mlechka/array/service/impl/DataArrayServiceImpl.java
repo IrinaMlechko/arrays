@@ -1,6 +1,6 @@
 package by.mlechka.array.service.impl;
 
-import by.mlechka.array.exception.ArrayCutomException;
+import by.mlechka.array.exception.ArrayCustomException;
 import by.mlechka.array.service.DataArrayService;
 import by.mlechka.array.model.DataArray;
 
@@ -157,13 +157,13 @@ public class DataArrayServiceImpl implements DataArrayService {
         logger.info("Array after insertion sort: {}", dataArray);
     }
     @Override
-    public DataArray createArrayFromFile(String fileName) throws ArrayCutomException, FileNotFoundException {
+    public DataArray createArrayFromFile(String fileName) throws ArrayCustomException, FileNotFoundException {
         FileValidator.validateFile(fileName);
         int[] numbers = readNumbersFromFile(fileName);
         return new DataArray(numbers);
     }
     @Override
-    public int[] readNumbersFromFile(String fileName) throws FileNotFoundException, ArrayCutomException {
+    public int[] readNumbersFromFile(String fileName) throws ArrayCustomException, FileNotFoundException {
         Scanner scanner = new Scanner(new File(fileName));
         String line = scanner.nextLine();
         String[] numberStrings = line.split(" ");
@@ -172,7 +172,7 @@ public class DataArrayServiceImpl implements DataArrayService {
             try {
                 numbers[i] = Integer.parseInt(numberStrings[i]);
             } catch (NumberFormatException e) {
-                throw new ArrayCutomException("Invalid number format: " + numberStrings[i]);
+                throw new ArrayCustomException("Invalid number format: " + numberStrings[i]);
             }
         }
         scanner.close();
@@ -224,7 +224,7 @@ public class DataArrayServiceImpl implements DataArrayService {
                 .sorted();
     }
     @Override
-    public DataArray createArrayFromFileStreams(String fileName) throws ArrayCutomException, FileNotFoundException {
+    public DataArray createArrayFromFileStreams(String fileName) throws ArrayCustomException{
         FileValidator fileValidator = new FileValidator();
         fileValidator.validateFileStreams(fileName);
         int[] numbers = Arrays.stream(readLineFromFileStreams(fileName).split("\\s"))
@@ -233,18 +233,18 @@ public class DataArrayServiceImpl implements DataArrayService {
         return new DataArray(numbers);
     }
     @Override
-    public String readLineFromFileStreams(String fileName) throws FileNotFoundException {
+    public String readLineFromFileStreams(String fileName) throws ArrayCustomException {
         try (Stream<String> stream = Files.lines(Paths.get(fileName))) {
             return stream.findFirst().orElseThrow(FileNotFoundException::new);
         } catch (IOException e) {
-            throw new FileNotFoundException();
+            throw new ArrayCustomException("File is wrong");
         }
     }
 
-    private void validateNumbersStreams(int[] numbers) throws ArrayCutomException {
+    private void validateNumbersStreams(int[] numbers) throws ArrayCustomException {
         boolean invalidNumberExists = Arrays.stream(numbers).anyMatch(number -> number < 1 || number > 10);
         if (invalidNumberExists) {
-            throw new ArrayCutomException("Invalid number found");
+            throw new ArrayCustomException("Invalid number found");
         }
     }
 }
