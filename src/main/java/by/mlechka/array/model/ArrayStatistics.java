@@ -22,6 +22,54 @@ public class ArrayStatistics {
         this.amountOfNegativeElements = amountOfNegativeElements;
     }
 
+    public Integer getMin() {
+        return min;
+    }
+
+    public void setMin(Integer min) {
+        this.min = min;
+    }
+
+    public Integer getMax() {
+        return max;
+    }
+
+    public void setMax(Integer max) {
+        this.max = max;
+    }
+
+    public Integer getSum() {
+        return sum;
+    }
+
+    public void setSum(Integer sum) {
+        this.sum = sum;
+    }
+
+    public Double getAverage() {
+        return average;
+    }
+
+    public void setAverage(Double average) {
+        this.average = average;
+    }
+
+    public Integer getAmountOfPositiveElements() {
+        return amountOfPositiveElements;
+    }
+
+    public void setAmountOfPositiveElements(Integer amountOfPositiveElements) {
+        this.amountOfPositiveElements = amountOfPositiveElements;
+    }
+
+    public Integer getAmountOfNegativeElements() {
+        return amountOfNegativeElements;
+    }
+
+    public void setAmountOfNegativeElements(Integer amountOfNegativeElements) {
+        this.amountOfNegativeElements = amountOfNegativeElements;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ArrayStatistics{");

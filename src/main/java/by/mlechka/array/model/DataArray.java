@@ -1,15 +1,19 @@
 package by.mlechka.array.model;
 
+import by.mlechka.array.exception.ArrayCustomException;
 import by.mlechka.array.observer.ArrayEvent;
 import by.mlechka.array.observer.Observable;
 import by.mlechka.array.observer.Observer;
 import by.mlechka.array.observer.impl.ArrayObserver;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Arrays;
 import java.util.UUID;
 
 public class DataArray implements Observable {
 
+    static Logger logger = LogManager.getLogger();
     private UUID id;
     private int[] numbers;
     private Observer observer;
@@ -22,15 +26,16 @@ public class DataArray implements Observable {
 
     public DataArray(int[] numbers) {
         this.id = UUID.randomUUID();
-        setNumbers(numbers);
         //TODO: why? how to do it right?
         observer = new ArrayObserver();
+        setNumbers(numbers);
     }
 
     public DataArray(UUID id, int[] numbers) {
         this.id = id;
-        this.numbers = numbers;
+        //TODO: why? how to do it right?
         observer = new ArrayObserver();
+        setNumbers(numbers);
     }
 
     public UUID getId() {
@@ -52,10 +57,7 @@ public class DataArray implements Observable {
 
     @Override
     public String toString() {
-        return "DataArray{" +
-                "id=" + id +
-                ", numbers=" + Arrays.toString(numbers) +
-                '}';
+        return "DataArray{" + "id=" + id + ", numbers=" + Arrays.toString(numbers) + '}';
 
     }
 
@@ -84,15 +86,18 @@ public class DataArray implements Observable {
     public void detach(Observer observer) {
         if (this.observer == observer) {
             this.observer = new ArrayObserver();
-
         }
-
     }
 
     @Override
     public void notifyObserver() {
         ArrayEvent event = new ArrayEvent(this);
-        if(observer != null){
-            observer.parameterChanged(event);}
+        if (observer != null) {
+            try {
+                observer.parameterChanged(event);
+            } catch (ArrayCustomException e) {
+                logger.warn("ArrayObserver exception");
+            }
+        }
     }
 }
