@@ -26,16 +26,20 @@ public class DataArray implements Observable {
 
     public DataArray(int[] numbers) {
         this.id = UUID.randomUUID();
-        //TODO: why? how to do it right?
-        observer = new ArrayObserver();
-        setNumbers(numbers);
+        //TODO: how to do it right?
+        if (numbers != null) {
+            observer = new ArrayObserver();
+            setNumbers(numbers);
+        }
     }
 
     public DataArray(UUID id, int[] numbers) {
         this.id = id;
-        //TODO: why? how to do it right?
+        //TODO: how to do it right?
+        if (numbers != null) {
         observer = new ArrayObserver();
         setNumbers(numbers);
+        }
     }
 
     public UUID getId() {
@@ -57,8 +61,12 @@ public class DataArray implements Observable {
 
     @Override
     public String toString() {
-        return "DataArray{" + "id=" + id + ", numbers=" + Arrays.toString(numbers) + '}';
-
+        final StringBuilder sb = new StringBuilder("DataArray{");
+        sb.append("id=").append(id);
+        sb.append(", numbers=").append(Arrays.toString(numbers));
+        sb.append(", observer=").append(observer);
+        sb.append('}');
+        return sb.toString();
     }
 
     @Override

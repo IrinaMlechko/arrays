@@ -15,10 +15,10 @@ import java.util.UUID;
 
 public class ArrayObserver implements Observer {
 
+    //FIXME: should it be Upper Case??
     private static final ArithmeticArrayService ARITHMETIC_ARRAY_SERVICE = new ArithmeticArrayServiceImpl();
     static Logger logger = LogManager.getLogger();
 
-    //TODO: catch exceptions
     @Override
     public void parameterChanged(ArrayEvent arrayEvent){
         System.out.println("parameterChanged called for " + arrayEvent );
@@ -38,6 +38,7 @@ public class ArrayObserver implements Observer {
             warehouse.put(id, statistics);
         } catch (ArrayCustomException e) {
             logger.warn("ArrayObserver exception");
+            //FIXME: what should we do by catch?
         }
     }
 }

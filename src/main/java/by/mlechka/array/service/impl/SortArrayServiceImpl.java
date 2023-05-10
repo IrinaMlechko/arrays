@@ -90,7 +90,8 @@ public class SortArrayServiceImpl implements SortArrayService {
         if (numbers == null) {
             throw new ArrayCustomException("Array is null. Array can not be sorted. ");
         }
-        Arrays.stream(numbers)
-                .sorted();
+        numbers = Arrays.stream(numbers)
+                .sorted().toArray();
+        dataArray.setNumbers(numbers);
     }
 }

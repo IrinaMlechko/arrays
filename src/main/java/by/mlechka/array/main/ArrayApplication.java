@@ -50,10 +50,6 @@ public class ArrayApplication {
             arrayRepository.add(dataArray);
         }
 
-        Warehouse warehouse = new Warehouse();
-//        firstArray.setNumbers(new int[]{1, 5, 9, -1, 8, 0});
-//        logger.info("Warehouse: " + warehouse);
-
     }
 
 }

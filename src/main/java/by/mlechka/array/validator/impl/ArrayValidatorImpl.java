@@ -8,13 +8,7 @@ public class ArrayValidatorImpl implements ArrayValidator {
 
     static Logger logger = LogManager.getLogger();
 
-//    private static final String INT_NUMBER_REGEX ="[-+]?\\d{1,3}";
-    private static final String INT_ARRAY_REGEX = "[-]?\\d{1,5}(?:\\s+[-]?\\d{1,5})*";
-//    @Override
-//    public boolean stringNumberValidate(String stringNum) {
-//        boolean match = stringNum.matches(INT_NUMBER_REGEX);
-//        return match;
-//    }
+    private static final String INT_ARRAY_REGEX = "\\s*[-]?\\d{1,5}(?:\\s+[-]?\\d{1,5})*\\s*";
 
     @Override
     public boolean arrayValidate(String stringArray) {
