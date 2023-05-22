@@ -10,6 +10,9 @@ import java.util.List;
 //TODO: add some tests
 class ArrayReaderImplTest {
 
+    static final String VALID_PATH = "src/main/resources/array/data.txt";
+    static final String NONEXISTENT_PATH = "src/main/resources/array/test.txt";
+
     private ArrayReaderImpl arrayReader;
 
     @BeforeEach
@@ -19,23 +22,14 @@ class ArrayReaderImplTest {
 
     @Test
     void readArray_ValidFile_ReturnsListOfArrays() throws ArrayCustomException {
-        String filename = "valid_file.txt";
+        String filename = VALID_PATH;
         List<int[]> result = arrayReader.readArray(filename);
-        // Perform assertions on the result
-        // ...
+        Assertions.assertEquals(5, result.size());
     }
 
     @Test
     void readArray_NonexistentFile_ThrowsArrayCustomException() {
-        String filename = "nonexistent_file.txt";
-        Assertions.assertThrows(ArrayCustomException.class, () -> {
-            arrayReader.readArray(filename);
-        });
-    }
-
-    @Test
-    void readArray_InvalidFileFormat_ThrowsArrayCustomException() {
-        String filename = "invalid_file_format.txt";
+        String filename = NONEXISTENT_PATH;
         Assertions.assertThrows(ArrayCustomException.class, () -> {
             arrayReader.readArray(filename);
         });

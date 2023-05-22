@@ -1,16 +1,15 @@
 package by.mlechka.array.reader.impl;
 
 import by.mlechka.array.exception.ArrayCustomException;
+import by.mlechka.array.reader.ArrayReader;
+import by.mlechka.array.validator.ArrayValidator;
+import by.mlechka.array.validator.impl.ArrayValidatorImpl;
 
 import java.io.IOException;
-import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
-import by.mlechka.array.reader.ArrayReader;
-import by.mlechka.array.validator.ArrayValidator;
-import by.mlechka.array.validator.impl.ArrayValidatorImpl;
 
 public class ArrayReaderImpl implements ArrayReader {
 
@@ -19,7 +18,7 @@ public class ArrayReaderImpl implements ArrayReader {
     public List<int[]> readArray(String filename) throws ArrayCustomException {
         Path path = Path.of(filename);
         if (!Files.exists(path)) {
-            throw new ArrayCustomException("File does not exist. ");
+            throw new ArrayCustomException("File does not exist. " + filename);
         }
         int[] oneArray;
         List<int[]> resultList = new ArrayList<>();
@@ -29,7 +28,7 @@ public class ArrayReaderImpl implements ArrayReader {
             ArrayValidator validator = new ArrayValidatorImpl();
             for (int i = 0; i < lines.size(); i++) {
                 String strNum = lines.get(i);
-                if(validator.arrayValidate(strNum)){
+                if (validator.arrayValidate(strNum)) {
                     String[] numArr = strNum.split(SPACE_DELIMITER);
                     oneArray = new int[numArr.length];
                     for (int j = 0; j < numArr.length; j++) {

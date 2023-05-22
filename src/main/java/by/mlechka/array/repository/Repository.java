@@ -11,7 +11,7 @@ public class Repository {
 
     private static Repository instance;
 
-    private List<DataArray> dataArrays = new ArrayList<>();
+    private static final List<DataArray> dataArrays = new ArrayList<>();
 
     public Repository(){}
 
@@ -51,15 +51,7 @@ public class Repository {
         return this.dataArrays.removeAll(dataArrays);
     }
 
-    public DataArray queryFindFirstById (Specification specification) {
-        return dataArrays.stream().filter(specification::specify).findFirst().orElse(null);
-    }
-
-    public DataArray queryFindAllBySum (Specification specification) {
-        return dataArrays.stream().filter(specification::specify).findFirst().orElse(null);
-    }
-
-    public DataArray queryFindAllWithMinGreaterThan (Specification specification) {
+    public DataArray queryFindFirstBySpecification (Specification specification) {
         return dataArrays.stream().filter(specification::specify).findFirst().orElse(null);
     }
 

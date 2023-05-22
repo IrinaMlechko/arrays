@@ -16,7 +16,7 @@ public class ArrayValidatorImpl implements ArrayValidator {
         if(result){
             logger.debug("String {} contains only numbers and whitespaces and will be processed to an array with numbers", stringArray);
         } else {
-            logger.info("String {} do not contain only numbers and whitespaces and will be ignored", stringArray);
+            logger.debug("String {} do not contain only numbers and whitespaces and will be ignored", stringArray);
         }
         return result;
     }
